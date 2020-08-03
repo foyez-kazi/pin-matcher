@@ -1,6 +1,6 @@
 let randomCode
-let inputCode = ''
-let tryCount = 3
+let inputCode
+let tryCount
 
 /**
  * select a tag
@@ -33,14 +33,27 @@ function input(value) {
   getElement('#input-code-display').value = inputCode
 }
 
+function reset() {
+  getElement('#match-message').style.display = 'none'
+  getElement('#not-match-message').style.display = 'none'
+
+  inputCode = ''
+  getElement('#input-code-display').value = inputCode
+
+  tryCount = 3
+  getElement('#try-count').textContent = tryCount
+}
+
 // hide notify messages in default mode
-getElement('#match-message').style.display = 'none'
-getElement('#not-match-message').style.display = 'none'
+reset()
 
 // interact for random generate button
 getElement('.generate-btn').addEventListener('click', () => {
   randomCode = generateRandomCode()
   getElement('#random-code-display').value = randomCode
+  // tryCount = 3
+  // getElement('#try-count').textContent = tryCount
+  reset()
 })
 
 // interact for code buttons
